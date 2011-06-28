@@ -1,0 +1,4 @@
+INSTALLATION:
+
+chmod a+x install.sh
+su -c "./install.sh"

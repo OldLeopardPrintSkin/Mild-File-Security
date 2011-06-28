@@ -9,7 +9,7 @@
 
 int usage(int usage, char* argv[]);
 int rot(int rotnum, int c);
-int getrotnum(char* argv[]);
+//int getrotnum(char* argv[]);
 
 int main(int argc, char *argv[]){
 
@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
 	int cyphered;
 	int c; //character storage
 	FILE * inFile;
+	FILE * helpFile;
 	int rotnum; //rot num
 
 	if ( argc < 2 ){
@@ -31,10 +32,17 @@ int main(int argc, char *argv[]){
 		}
 		switch ( argv[1][1] ){ 
 			case 'h':  // Help
-				printf("Helpfile\n");
+				helpFile=fopen("HELP", "r");
+				if ( helpFile == NULL ){
+					perror ("Error opening file");
+				}
+				while(c != EOF){
+					c = fgetc(helpFile);
+					if (c != EOF) putchar(c);
+				}
 				break;
 			case 'r': // rotational cypher
-				rotnum = getrotnum(argv);
+				//rotnum = getrotnum(argv);
 				if (argv[2][0] == '-'){ // if the second argument == -
 					if (argv[2][1] == NULL){ // must specify filenames
 						use = 1;
@@ -44,11 +52,11 @@ int main(int argc, char *argv[]){
 					if (inFile==NULL){
 						perror ("Error opening file");
 					}
-					do{
-						c = fgetc (inFile);
+					while(c != EOF){
+						c = fgetc(inFile);
 						cyphered = rot(rotnum, c);
 						putchar(cyphered);
-					}while(c != EOF);
+					}
 					fclose (inFile);
 					}
 				}else{
@@ -86,7 +94,7 @@ int rot(int rotnum, int c){
 				}
 	//putchar(c);
 	return c;
-}
+}/*
 
 int getrotnum(char* argv[]){
 	int i;
@@ -103,7 +111,7 @@ int getrotnum(char* argv[]){
 		if 
 
 }
-
+*/
 int usage(int usage, char* argv[]){
 	switch(usage){
 		case 1:

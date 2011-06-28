@@ -1,0 +1,9 @@
+Usage: 
+
+kruptos -[r, h][1-26] -inputfile
+
+Options:
+
+-r: Rotational cipher
+
+-h: This helpfile
