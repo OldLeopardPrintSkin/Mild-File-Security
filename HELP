@@ -1,6 +1,6 @@
 Usage: 
 
-kruptos -[r, h][1-26] -inputfile
+mfs -[r, h][1-26] -inputfile
 
 Options:
 

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc -o kruptos Kruptos.c -w
-mv ./kruptos /usr/bin/kruptos
+gcc -o mfs mfs.c -w
+mv ./mfs /usr/bin/mfs
