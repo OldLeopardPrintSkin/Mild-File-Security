@@ -1,15 +1,9 @@
 Usage: 
 
-	mfs <file> <rotational number> <file_to_write_to>
+	mfs [-mrh] [rotational number] <file> <file_to_write_to>
 
-e.g.
-
-	mfs myfile.txt 13
-	encodes myfile.txt with rot13
+	e.g.
 	
-	mfs myfile.txt 13 -o output.txt
-	encodes myfile.txt with rot13 and prints the output to file output.txt
-
-Or
-	
-	mfs -h (bring up this help file)
+	mfs -m foo.txt
+	mfs -r 13 bar.txt blank.txt
+	mfs -h 
