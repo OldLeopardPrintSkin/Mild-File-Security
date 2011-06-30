@@ -15,8 +15,6 @@ int main(int argc, char *argv[]){
 
 	int use; //1 = not enough params, 2 = incorrect params
 	int i; //used in loops
-	int done = 0;
-	int cyphered;
 	int c; //character storage
 	FILE * inFile;
 	FILE * outFile;
@@ -28,7 +26,7 @@ int main(int argc, char *argv[]){
 		use = 1;
 		usage(use, argv);
 	}else{
-		if ( argv[1][0] == '-' ){  //need a hyphen for the first argument
+		if ( argv[1][0] == '-' ){ 
 			if ( argv[1][1] == 'h' || argv[1][1] == 'H' ){
 				helpFile=fopen("HELP", "r");
 				if ( helpFile == NULL ){
@@ -62,8 +60,8 @@ int main(int argc, char *argv[]){
 					if ( outstat == 0 ){
 						while(c != EOF){
 							c = fgetc(inFile);
-							cyphered = rot(rotnum, c);
-							putchar(cyphered);
+							c = rot(rotnum, c);
+							putchar(c);
 						}
 						printf("\n");
 						fclose (inFile);
@@ -71,7 +69,7 @@ int main(int argc, char *argv[]){
 						outFile=fopen (argv[3], "w");
 						while(c != EOF){
 							c = fgetc(inFile);	
-							cyphered = rot(rotnum, c);
+							c = rot(rotnum, c);
 							fputc(c, outFile);	
 						}
 						fclose (inFile);
@@ -116,5 +114,5 @@ int usage(int usage, char* argv[]){
 			printf("> Try running %s -h\n", argv[0]);
 			break;
 	}
-	exit(1);
+	return 1;
 }
