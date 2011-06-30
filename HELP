@@ -1,9 +1,5 @@
 Usage: 
 
-mfs -[r, h][1-26] -inputfile
-
-Options:
-
--r: Rotational cipher
-
--h: This helpfile
+mfs <file> 
+Or
+mfs -h (bring up this help file)

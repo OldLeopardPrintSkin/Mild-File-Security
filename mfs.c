@@ -1,9 +1,9 @@
-/*
- * Kruptos.c
- *
- *  Created on: Jun 21, 2011
- *      Author: woden
- */
+/*********************************/
+/* Mfs				 */
+/* Don't expect this to work     */
+/* Licenced under the MIT licence*/
+/* Which is included by the way  */
+/*********************************/
 
 #include <stdio.h>
 
@@ -20,18 +20,14 @@ int main(int argc, char *argv[]){
 	int c; //character storage
 	FILE * inFile;
 	FILE * helpFile;
-	int rotnum; //rot num
+	int rotnum = 13; //rot num
 
 	if ( argc < 2 ){
 		use = 1;
 		usage(use, argv);
 	}else{
-		if ( argv[1][0] != '-' ){  //need a hyphen for the first argument
-			use = 2;
-			usage(use, argv);
-		}
-		switch ( argv[1][1] ){ 
-			case 'h':  // Help
+		if ( argv[1][0] == '-' ){  //need a hyphen for the first argument
+			if ( argv[1][1] == 'h' || argv[1][1] == 'H' ){
 				helpFile=fopen("HELP", "r");
 				if ( helpFile == NULL ){
 					perror ("Error opening file");
@@ -40,38 +36,31 @@ int main(int argc, char *argv[]){
 					c = fgetc(helpFile);
 					if (c != EOF) putchar(c);
 				}
-				break;
-			case 'r': // rotational cypher
-				//rotnum = getrotnum(argv);
-				if (argv[2][0] == '-'){ // if the second argument == -
-					if (argv[2][1] == NULL){ // must specify filenames
+				return 0;
+			}else{
+				use = 2;
+				usage(use, argv);
+			}					
+		}else if ( argv[1] != NULL ){
+					if ( argv[2] == NULL ){
 						use = 1;
-						usage(use, argv);//////////////////////////////////MAKE IT SO THAT CUSTOM FILENAMES
+						usage(use, argv);
 					}else{
-					inFile=fopen ("myfile.txt","r");
+						rotnum = atoi(argv[2]);
+					}
+					inFile=fopen (argv[1],"r");
 					if (inFile==NULL){
 						perror ("Error opening file");
 					}
-					while(c != EOF){
+					while(c != EOF && c != NULL){
 						c = fgetc(inFile);
 						cyphered = rot(rotnum, c);
 						putchar(cyphered);
 					}
 					fclose (inFile);
 					}
-				}else{
-					use = 2;
-					usage(use, argv);
-				}
-				printf("\n");
-				break;
-			default:
-				use = 2;
-				usage(use, argv);
-				break;
-		}
 	}
-
+	printf("\n");
 	return 0;
 
 }
@@ -92,26 +81,8 @@ int rot(int rotnum, int c){
 					}
 					
 				}
-	//putchar(c);
 	return c;
-}/*
-
-int getrotnum(char* argv[]){
-	int i;
-	int(argv[1][2]);
-
-	if ( argv[1][3] == NULL ){
-		for(i = 0; i < 10; i++){
-			if ( i == argv[1][1] ){
-				return i;
-			}
-		}
-	}else if ( argv[1][3] != NULL ){
-		int(argv[1][3]);
-		if 
-
 }
-*/
 int usage(int usage, char* argv[]){
 	switch(usage){
 		case 1:
@@ -122,8 +93,6 @@ int usage(int usage, char* argv[]){
 			printf("> Incorrect parameters\n");
 			printf("> Type %s -h for help\n", argv[0]);
 			break;
-		case 3:
-			printf("> -r only takes values below 26\n");
 		default:
 			printf("> You broke me somehow\n");
 			printf("> Try running %s -h\n", argv[0]);
