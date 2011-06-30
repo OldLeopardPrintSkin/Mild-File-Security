@@ -9,12 +9,10 @@
 
 int usage(int usage, char* argv[]);
 int rot(int rotnum, int c);
-//int getrotnum(char* argv[]);
 
 int main(int argc, char *argv[]){
 
 	int use; //1 = not enough params, 2 = incorrect params
-	int i; //used in loops
 	int c; //character storage
 	FILE * inFile;
 	FILE * outFile;
